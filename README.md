@@ -1,4 +1,4 @@
-Add .env file in config folder in the server folder
+Create a .env file inside the config folder in the server directory. Add the following environment variables with your credentials:
 
 PORT=
 
@@ -19,4 +19,4 @@ CLOUDINARY_CLIENT_API=
 CLOUDINARY_CLIENT_SECRET=
 
 
-write all above this tect in the env file  and add all your credentials
+
