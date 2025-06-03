@@ -85,7 +85,7 @@ const borrowSlice = createSlice({
 export const fetchUserBorrowedBooks = () => async (dispatch) => {
     dispatch(borrowSlice.actions.fetchUserBorrowedBooksRequest())
     try {
-        const res = await axios.get("http://localhost:4000/api/v1/borrow/my-borrowed-books", {
+        const res = await axios.get("https://library-management-system-nu-two.vercel.app//api/v1/borrow/my-borrowed-books", {
             withCredentials: true
         })
         dispatch(borrowSlice.actions.fetchUserBorrowedBooksSuccess(res.data.borrowedBooks))
@@ -98,7 +98,7 @@ export const fetchUserBorrowedBooks = () => async (dispatch) => {
 export const fetchAllBorrowedBooks = () => async (dispatch) => {
     dispatch(borrowSlice.actions.fetchAllBorrowedBooksRequest())
     try {
-        const res = await axios.get("http://localhost:4000/api/v1/borrow/borrowed-books-by-users", {
+        const res = await axios.get("https://library-management-system-nu-two.vercel.app//api/v1/borrow/borrowed-books-by-users", {
             withCredentials: true
         })
         dispatch(borrowSlice.actions.fetchAllBorrowedBooksSuccess(res.data.borrowedBooks))
@@ -111,7 +111,7 @@ export const fetchAllBorrowedBooks = () => async (dispatch) => {
 export const recordBorrowedBook = (id, email) => async (dispatch) => {
     dispatch(borrowSlice.actions.recordBookRequest())
     try {
-        const res = await axios.post(`http://localhost:4000/api/v1/borrow/record-borrow-book/${id}`, { email }, {
+        const res = await axios.post(`https://library-management-system-nu-two.vercel.app//api/v1/borrow/record-borrow-book/${id}`, { email }, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json"
@@ -128,7 +128,7 @@ export const recordBorrowedBook = (id, email) => async (dispatch) => {
 export const returnBook = (id, email) => async (dispatch) => {
     dispatch(borrowSlice.actions.returnBookRequest())
     try {
-        const res = await axios.put(`http://localhost:4000/api/v1/borrow/return-borrowed-book/${id}`, { email }, {
+        const res = await axios.put(`https://library-management-system-nu-two.vercel.app//api/v1/borrow/return-borrowed-book/${id}`, { email }, {
             withCredentials: true,
             headers: {
                 "Content-Type": "application/json"

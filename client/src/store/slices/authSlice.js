@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+// url="http://localhost:4000"
+
 const authSlice = createSlice({
     name: "auth",
     initialState: {
@@ -175,7 +177,7 @@ export const resetAuthSlice = () => (dispatch) => {
 
 export const register = (data) => async (dispatch) => {
     dispatch(authSlice.actions.registerRequest())
-    await axios.post("http://localhost:4000/api/v1/auth/register", data, {
+    await axios.post("https://library-management-system-nu-two.vercel.app//api/v1/auth/register", data, {
         withCredentials: true,
         headers: {
             "Content-Type": "application/json",
@@ -206,7 +208,7 @@ export const login = (data) => async (dispatch) => {
 
 export const otpVerification = (data) => async (dispatch) => {
     dispatch(authSlice.actions.otpVerificationRequest())
-    await axios.post("http://localhost:4000/api/v1/auth/verify-otp", data, {
+    await axios.post("https://library-management-system-nu-two.vercel.app//api/v1/auth/verify-otp", data, {
         withCredentials: true,
         headers: {
             "Content-Type": "application/json",
@@ -221,7 +223,7 @@ export const otpVerification = (data) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
     dispatch(authSlice.actions.logoutRequest())
-    await axios.get("http://localhost:4000/api/v1/auth/logout", {
+    await axios.get("https://library-management-system-nu-two.vercel.app//api/v1/auth/logout", {
         withCredentials: true,
       
     }).then(res => {
@@ -235,7 +237,7 @@ export const logout = () => async (dispatch) => {
 
 export const getUser = () => async (dispatch) => {
     dispatch(authSlice.actions.getUserRequest())
-    await axios.get("http://localhost:4000/api/v1/auth/me", {
+    await axios.get("https://library-management-system-nu-two.vercel.app//api/v1/auth/me", {
         withCredentials: true,
     
 
@@ -253,7 +255,7 @@ export const getUser = () => async (dispatch) => {
 
 export const forgotPassword = (data) => async (dispatch) => {
     dispatch(authSlice.actions.forgotPasswordRequest())
-    await axios.post("http://localhost:4000/api/v1/auth/password/forgot", data, {
+    await axios.post("https://library-management-system-nu-two.vercel.app//api/v1/auth/password/forgot", data, {
         withCredentials: true,
         headers: {
             "Content-Type": "application/json",
@@ -268,7 +270,7 @@ export const forgotPassword = (data) => async (dispatch) => {
 
 export const resetPassword = (data,token) => async (dispatch) => {
     dispatch(authSlice.actions.resetPasswordRequest())
-    await axios.put(`http://localhost:4000/api/v1/auth/password/reset/${token}`,data, {
+    await axios.put(`https://library-management-system-nu-two.vercel.app//api/v1/auth/password/reset/${token}`,data, {
         withCredentials: true,
         headers: {
             "Content-Type": "application/json",
@@ -283,7 +285,7 @@ export const resetPassword = (data,token) => async (dispatch) => {
 
 export const updatePassword = (data) => async (dispatch) => {
     dispatch(authSlice.actions.updatePasswordRequest())
-    await axios.put(`http://localhost:4000/api/v1/auth/password/update`,data, {
+    await axios.put(`https://library-management-system-nu-two.vercel.app//api/v1/auth/password/update`,data, {
         withCredentials: true,
         headers: {
             "Content-Type": "application/json",
