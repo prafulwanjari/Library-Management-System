@@ -55,7 +55,7 @@ const bookSlice = createSlice({
 
 export const fetchAllBooks=()=>async(dispatch)=>{
     dispatch(bookSlice.actions.fetchBookRequest())
-    await axios.get("https://library-management-system-nu-two.vercel.app//api/v1/book/all",{
+    await axios.get("https://library-management-system-nu-two.vercel.app/api/v1/book/all",{
         withCredentials:true,
         
     }).then(res=>{
@@ -69,7 +69,7 @@ export const fetchAllBooks=()=>async(dispatch)=>{
 
 export const addAllBooks= (data) => async(dispatch) =>{
     dispatch(bookSlice.actions.addBookRequest())
-    await axios.post("https://library-management-system-nu-two.vercel.app//api/v1/book/admin/add",data,{
+    await axios.post("https://library-management-system-nu-two.vercel.app/api/v1/book/admin/add",data,{
         withCredentials:true,
         headers:{
             "Content-Type":"application/json"

@@ -40,7 +40,7 @@ const userSlice = createSlice({
 export const FetchAllusers = () => async (dispatch) => {
     dispatch(userSlice.actions.fetchAllUsersRequest());
     try {
-        const res = await axios.get("https://library-management-system-nu-two.vercel.app//api/v1/user/all", { withCredentials: true });
+        const res = await axios.get("https://library-management-system-nu-two.vercel.app/api/v1/user/all", { withCredentials: true });
         dispatch(userSlice.actions.fetchAllUsersSuccess(res.data.users));
     } catch (err) {
         dispatch(userSlice.actions.fetchAllUsersFailed(err.response?.data?.message || 'Failed to fetch users'));
@@ -50,7 +50,7 @@ export const FetchAllusers = () => async (dispatch) => {
 export const addNewAdmin = (data) => async (dispatch) => {
     dispatch(userSlice.actions.addNewAdminRequest());
     try {
-        const res = await axios.post("https://library-management-system-nu-two.vercel.app//api/v1/user/add/new-admin", data, {
+        const res = await axios.post("https://library-management-system-nu-two.vercel.app/api/v1/user/add/new-admin", data, {
             withCredentials: true,
             headers: {
                 "Content-Type": "multipart/form-data"
