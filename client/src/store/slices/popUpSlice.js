@@ -31,11 +31,11 @@ const popupSlice = createSlice({
         },
          closeAllPopup(state){
             state.addBookPopup=false;
-            state.addNewAdminPopup=false,
-            state.readBookPopup=false,
-            state.recordBookPopup=false,
-            state.returnBookPopup=false,
-            state.settingPopup=false
+            state.addNewAdminPopup=false;
+            state.readBookPopup=false;
+            state.recordBookPopup=false;
+            state.returnBookPopup=false;
+            state.settingPopup=false;
 
         },
     }
