@@ -71,11 +71,31 @@ const isProduction = process.env.NODE_ENV === 'production';
 const FRONTEND_URL = isProduction ? process.env.PROD_FRONTEND_URL : process.env.DEV_FRONTEND_URL;
 const MONGO_URI = isProduction ? process.env.PROD_MONGO_URI : process.env.DEV_MONGO_URI;
 
+// app.use(cors({
+//   origin: FRONTEND_URL,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   credentials: true,
+// }));
+
 app.use(cors({
-  origin: FRONTEND_URL,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: function (origin, callback) {
+    console.log("Incoming origin:", origin);
+    if (!origin || origin === FRONTEND_URL) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
 }));
+console.log(FRONTEND_URL)
+
+app.get('/', (req, res) => {
+  res.send('Library Backend is running successfully!');
+});
+
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("FRONTEND_URL:", FRONTEND_URL);
 
 
 app.use(cookieParser());

@@ -9,8 +9,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_CLIENT_SECRET,
   
 });
-app.get('/', (req, res) => {
-  res.send('Library Backend is running successfully!');
-});
+
 
 app.listen(process.env.PORT,()=>{console.log(`server is running on port ${process.env.PORT}`)})
