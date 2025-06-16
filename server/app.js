@@ -67,9 +67,9 @@ config({ path: './config/config.env' });
 
 export const app = express();
 
-const isProduction = process.env.NODE_ENV === 'production';
+ const isProduction = process.env.NODE_ENV === 'production';
 const FRONTEND_URL = isProduction ? process.env.PROD_FRONTEND_URL : process.env.DEV_FRONTEND_URL;
-const MONGO_URI = isProduction ? process.env.PROD_MONGO_URI : process.env.DEV_MONGO_URI;
+ const MONGO_URI = isProduction ? process.env.PROD_MONGO_URI : process.env.DEV_MONGO_URI;
 
 // app.use(cors({
 //   origin: FRONTEND_URL,
@@ -77,18 +77,25 @@ const MONGO_URI = isProduction ? process.env.PROD_MONGO_URI : process.env.DEV_MO
 //   credentials: true,
 // }));
 
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     console.log("Incoming origin:", origin);
+//     if (!origin || origin === FRONTEND_URL) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true,
+// }));
+
+
 app.use(cors({
-  origin: function (origin, callback) {
-    console.log("Incoming origin:", origin);
-    if (!origin || origin === FRONTEND_URL) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: 'https://librarymanagementsysteml.netlify.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
-console.log(FRONTEND_URL)
+
 
 app.get('/', (req, res) => {
   res.send('Library Backend is running successfully!');
