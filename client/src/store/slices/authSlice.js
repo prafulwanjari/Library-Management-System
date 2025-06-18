@@ -307,7 +307,7 @@
 
 
 import { createSlice } from '@reduxjs/toolkit'
-import axiosInstance from '../../utill/axiosInstance'  // use your custom axios setup
+import axiosInstance from '../../utill/axiosInstance'  
 
 const authSlice = createSlice({
     name: "auth",

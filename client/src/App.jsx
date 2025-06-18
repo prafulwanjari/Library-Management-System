@@ -20,29 +20,36 @@ const App = () => {
 const {user, isAuthenticated}=useSelector((state) =>state.auth)
 const dispatch=useDispatch()
 
-useEffect(()=>{
-  dispatch(getUser())
-  dispatch(fetchAllBooks())
-  if(isAuthenticated && user?.role==="Admin"){
-    dispatch(FetchAllusers())
-    dispatch(fetchAllBorrowedBooks())
-  }
-   if(isAuthenticated && user?.role==="User"){
-    dispatch(fetchUserBorrowedBooks())
-  }
-},[isAuthenticated])
-
-
-// useEffect(() => {
-//   dispatch(getUser());
-//   dispatch(fetchAllBooks());
-// }, []);
-
-// useEffect(() => {
-//   if (isAuthenticated && user?.role === "Admin") {
-//     dispatch(FetchAllusers());
+// useEffect(()=>{
+//   dispatch(getUser())
+//   dispatch(fetchAllBooks())
+//   if(isAuthenticated && user?.role==="Admin"){
+//     dispatch(FetchAllusers())
+//     dispatch(fetchAllBorrowedBooks())
 //   }
-// }, [isAuthenticated, user?.role]);
+//    if(isAuthenticated && user?.role==="User"){
+//     dispatch(fetchUserBorrowedBooks())
+//   }
+// },[isAuthenticated])
+
+useEffect(() => {
+  dispatch(getUser()); // Only this should run initially
+}, []);
+
+useEffect(() => {
+  if (isAuthenticated) {
+    dispatch(fetchAllBooks());
+
+    if (user?.role === "Admin") {
+      dispatch(FetchAllusers());
+      dispatch(fetchAllBorrowedBooks());
+    }
+
+    if (user?.role === "User") {
+      dispatch(fetchUserBorrowedBooks());
+    }
+  }
+}, [isAuthenticated, user?.role]);
 
 
   return <>
