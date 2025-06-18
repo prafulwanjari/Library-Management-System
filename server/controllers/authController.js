@@ -132,25 +132,26 @@ export const login=catchAsyncErrors(async(req,res,next)=>{
 //     })
 // })
 
-export const logout = catchAsyncErrors(async (req, res, next) => {
-  res
-  .status(statusCode)
-  .cookie("token", token, {
-    expires: new Date(
-      Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
-    ),
-    httpOnly: true,
-    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/", // ✅ Add this
-  })
-  .json({
-    success: true,
-    user,
-    message,
-    token,
-  });
-});
+export const logout = (req, res) => {
+  try {
+    res.cookie("token", "", {
+      httpOnly: true,
+      expires: new Date(0),
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+    });
+
+    return res.status(200).json({
+      message: "Logged out successfully",
+    });
+  } catch (error) {
+    console.error("Logout error:", error);
+    return res.status(500).json({
+      message: "Something went wrong during logout",
+    });
+  }
+};
 
 export const getUser=catchAsyncErrors(async(req,res,next)=>{
     const user=req.user
