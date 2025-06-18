@@ -40,12 +40,12 @@ useEffect(() => {
   if (isAuthenticated) {
     dispatch(fetchAllBooks());
 
-    if (user?.role === "Admin") {
+    if (user.role === "Admin") {
       dispatch(FetchAllusers());
       dispatch(fetchAllBorrowedBooks());
     }
 
-    if (user?.role === "User") {
+    if (user.role === "User") {
       dispatch(fetchUserBorrowedBooks());
     }
   }
